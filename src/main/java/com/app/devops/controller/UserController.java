@@ -1,0 +1,38 @@
+package com.app.devops.controller;
+
+import com.app.devops.entity.User;
+import com.app.devops.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+public class UserController {
+
+    @Autowired
+    UserRepository userRepository;
+
+
+
+
+    @GetMapping
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
+
+    @PostMapping
+    public User postUser(@RequestBody User user) {
+        return userRepository.save(user);
+    }
+
+
+    @GetMapping("welcome")
+    public String getWelcome() {
+        return "welcome";
+    }
+
+}
